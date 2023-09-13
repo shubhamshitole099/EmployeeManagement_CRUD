@@ -1,0 +1,29 @@
+﻿@model List<Audit>
+
+<h2>User Audit History</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Timestamp</th>
+            <th>Employee Name</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var audit in Model)
+        {
+            <tr>
+                <td>@audit.Action</td>
+                <td>@audit.Timestamp</td>
+                <td>@audit.EmployeeName</td>
+                <td>@audit.Details</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-dark btn-sm mt-5" asp-controller="Download" asp-action="Download" asp-route-dataType="AuditHistory">Download User Audit History (Excel)</a>
+</div>

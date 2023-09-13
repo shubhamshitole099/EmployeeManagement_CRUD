@@ -1,0 +1,97 @@
+﻿@* @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NewPracticeProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NewPracticeProject.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Index">NewPracticeProject</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-flex justify-content-start">
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-success btn-sm" asp-controller="Employees" asp-action="Create" style="margin-right: 10px;">Add Employee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-success btn-sm" asp-controller="Departments" asp-action="Create" style="margin-right: 10px;">Add Department</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-info btn-sm" asp-controller="Employees" asp-action="UserAuditHistory" style="margin-right: 10px;">My Audit History</a>
+                            </li>
+
+                        @*     <li class="nav-item">
+                                <a class="nav-link btn btn-outline-info btn-sm" asp-action="AuditHistory" asp-controller="Employees">All Audit History</a>
+                            </li> *@
+
+                           
+
+                        }
+                    </ul>
+                </div>
+                <ul class="navbar-nav d-flex justify-content-end">
+                    <!-- Align to the right side -->
+                    @if (!ViewContext.ActionDescriptor.RouteValues["action"].ToString().Equals("Login", StringComparison.OrdinalIgnoreCase) &&
+                    !ViewContext.ActionDescriptor.RouteValues["action"].ToString().Equals("SignUp", StringComparison.OrdinalIgnoreCase))
+                    {
+                      @*   @if (HttpContextAccessor.HttpContext.Session.GetString("IsAuthenticated") == "true")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger" asp-action="Logout" asp-controller="Account">Logout</a>
+                            </li>
+                        } *@
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link" style="color:rgb(161, 35, 35)">Welcome, @User.Identity.Name!</span>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger btn-sm text-white" asp-action="Logout" asp-controller="Account">Logout</a>
+                            </li>
+                         
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary btn-sm" asp-action="Login" asp-controller="Account">Login</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - NewPracticeProject - <a asp-area="" asp-controller="" asp-action="">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+   
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

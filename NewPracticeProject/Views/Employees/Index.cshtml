@@ -1,0 +1,43 @@
+﻿@model List<NewPracticeProject.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Department.Name</td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Edit</a> |
+                    <a class=" btn btn-info btn-sm"  asp-controller= "Employees" asp-action="Details" asp-route-id="@employee.Id">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id">Delete</a> 
+                   
+               
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-dark btn-sm" style="margin-top:5%"  asp-controller="Download" asp-action="Download" asp-route-dataType="employees">
+    Download Employee Data (Excel)
+</a>
+
+
+
+  

@@ -1,0 +1,41 @@
+﻿@model NewPracticeProject.Models.ViewModel.LoginSignUpViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="text-center">
+                <h1 class="text-capitalize">Sign Up</h1>
+
+                @if (TempData["ThankYouMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["ThankYouMessage"]
+                    </div>
+                }
+
+            </div>
+            <form asp-action="SignUp" method="post">
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input type="email" asp-for="Email" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input type="text" asp-for="Password" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input type="text" asp-for="ConfirmPassword" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success btn-lg  mt-4 mb-1 float-rigth" value="Register" />
+                    <a class="text-light  btn-lg mt-4 mb-1 btn btn-primary font-weigth-bold" asp-action="Login" asp-controller="Account">Log In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

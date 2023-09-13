@@ -1,0 +1,29 @@
+﻿@model NewPracticeProject.Models.ViewModel.EmployeeCreateViewModel
+
+<h2>Create Employee</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" required/>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" required />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedDepartmentId" class="control-label"></label>
+        <select asp-for="SelectedDepartmentId" class="form-control" asp-items="Model.Departments">
+            <option value="">Select Department</option>
+        </select>
+        <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+

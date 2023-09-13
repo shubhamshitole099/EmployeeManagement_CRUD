@@ -1,0 +1,30 @@
+﻿@model List<NewPracticeProject.Models.Department>
+
+<!-- ... -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => department.Name)</td>
+                <td>
+
+                    <a class="btn btn-primary btn-sm" asp-controller="Departments" asp-action="Edit" asp-route-id="@department.Id">Edit</a> |
+                    <a class=" btn btn-info btn-sm" asp-controller="Departments" asp-action="Details" asp-route-id="@department.Id">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-controller="Departments" asp-action="Delete" asp-route-id="@department.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-dark btn-sm" style="margin-top:5%" asp-controller="Download" asp-action="Download" asp-route-dataType="departments">
+    Download Departments Data (Excel)
+</a>
